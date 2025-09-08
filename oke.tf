@@ -57,7 +57,7 @@ resource "oci_containerengine_node_pool" "oci_oke_node_pool" {
   kubernetes_version = var.k8s_version
   name               = var.pool_name
   node_shape         = var.node_shape
-  is_pv_encryption_in_transit_enabled = var.worker_pv_transit_encryption
+  
   initial_node_labels {
     key   = var.node_pool_initial_node_labels_key
     value = var.node_pool_initial_node_labels_value
@@ -103,6 +103,7 @@ resource "oci_containerengine_node_pool" "oci_oke_node_pool" {
   ssh_public_key = var.ssh_public_key != "" ? var.ssh_public_key : tls_private_key.public_private_key_pair.public_key_openssh
 
   node_config_details {
+    is_pv_encryption_in_transit_enabled = var.worker_pv_transit_encryption
     dynamic "placement_configs" {
       iterator = pc_iter
       for_each = local.availability_domains #data.oci_identity_availability_domains.ADs.availability_domains

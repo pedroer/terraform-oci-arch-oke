@@ -198,3 +198,10 @@ variable "is_force_delete_after_grace_duration" {
 variable "defined_tags" {
   default = {}
 }
+
+variable "enable_operator_pv_encryption_in_transit" { 
+  default = false 
+}
+variable "worker_pv_transit_encryption" { 
+  default = false 
+}

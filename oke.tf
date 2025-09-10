@@ -99,7 +99,11 @@ resource "oci_containerengine_node_pool" "oci_oke_node_pool" {
       source_type             = data.oci_containerengine_node_pool_option.oci_oke_node_pool_option.sources[0].source_type
     }
   }
-
+  lifecycle {
+    ignore_changes = [
+      node_source_details[0].image_id
+    ]
+  }
   ssh_public_key = var.ssh_public_key != "" ? var.ssh_public_key : tls_private_key.public_private_key_pair.public_key_openssh
 
   node_config_details {

@@ -134,7 +134,7 @@ variable "pods_subnet_cidr" {
 }
 
 variable "node_linux_version" {
-  default = "7.9"
+  default = "8.10"
 }
 
 variable "node_count" {
